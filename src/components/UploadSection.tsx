@@ -82,17 +82,21 @@ const UploadSection = () => {
         });
       }, 200);
 
-      // Upload to backend
-      const response = await fetch('http://localhost:3001/api/tracks/upload', {
-        method: 'POST',
-        body: uploadFormData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const result = await response.json();
+      // Simulate upload success for demo
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      const result = {
+        success: true,
+        track: {
+          id: 'demo-track-' + Date.now(),
+          monadTrackId: Math.floor(Math.random() * 1000),
+          title: formData.title,
+          artist: formData.artist,
+          genre: formData.genre,
+          audioUrl: 'demo-audio-url',
+          status: 'minted'
+        }
+      };
       
       setUploadProgress(100);
       

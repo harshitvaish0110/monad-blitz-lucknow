@@ -14,8 +14,8 @@ const TrendingSection = () => {
       id: '1',
       title: 'Cyber Dreams',
       artist: 'NeonSynth',
-      views: 125420,
-      remixCount: 47,
+      views: 5,
+      remixCount: 2,
       duration: '3:42',
       genre: 'Synthwave',
     },
@@ -23,8 +23,8 @@ const TrendingSection = () => {
       id: '2',
       title: 'Digital Rain (VortexRemix)',
       artist: 'ByteBeats',
-      views: 89760,
-      remixCount: 23,
+      views: 4,
+      remixCount: 1,
       duration: '4:15',
       genre: 'Ambient',
       isRemix: true,
@@ -34,8 +34,8 @@ const TrendingSection = () => {
       id: '3',
       title: 'Quantum Frequencies',
       artist: 'CyberPunk',
-      views: 78340,
-      remixCount: 31,
+      views: 3,
+      remixCount: 1,
       duration: '5:23',
       genre: 'Techno',
     },
@@ -43,8 +43,8 @@ const TrendingSection = () => {
       id: '4',
       title: 'Neural Network',
       artist: 'AI_Composer',
-      views: 67890,
-      remixCount: 19,
+      views: 2,
+      remixCount: 0,
       duration: '3:58',
       genre: 'Electronic',
     },
@@ -52,8 +52,8 @@ const TrendingSection = () => {
       id: '5',
       title: 'Matrix Glitch (Extended)',
       artist: 'GlitchMaster',
-      views: 54320,
-      remixCount: 15,
+      views: 1,
+      remixCount: 0,
       duration: '6:12',
       genre: 'Glitch',
       isRemix: true,
@@ -63,8 +63,8 @@ const TrendingSection = () => {
       id: '6',
       title: 'Neon Nights',
       artist: 'RetroWave',
-      views: 45670,
-      remixCount: 28,
+      views: 1,
+      remixCount: 0,
       duration: '4:33',
       genre: 'Synthwave',
     },
@@ -140,7 +140,7 @@ const TrendingSection = () => {
           <div className="flex items-center gap-6">
             <div className="text-center">
               <div className="text-2xl font-cyber font-bold text-neon-cyan">
-                1,247
+                3
               </div>
               <div className="text-xs text-muted-foreground">
                 PLAYING NOW
@@ -148,7 +148,7 @@ const TrendingSection = () => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-cyber font-bold text-neon-pink">
-                89
+                2
               </div>
               <div className="text-xs text-muted-foreground">
                 NEW UPLOADS
@@ -156,7 +156,7 @@ const TrendingSection = () => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-cyber font-bold text-neon-purple">
-                156
+                1
               </div>
               <div className="text-xs text-muted-foreground">
                 REMIXES TODAY
