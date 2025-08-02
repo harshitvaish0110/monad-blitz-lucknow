@@ -59,27 +59,63 @@ const UploadSection = () => {
     setIsUploading(true);
     setUploadProgress(0);
 
-    // Simulate upload progress
-    const progressInterval = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          setIsUploading(false);
-          // Reset form
-          setFile(null);
-          setFormData({
-            title: '',
-            artist: '',
-            genre: '',
-            description: '',
-            royaltyPercentage: '500',
-            parentTrackId: '',
-          });
-          return 100;
-        }
-        return prev + 10;
+    try {
+      // Create FormData for upload
+      const uploadFormData = new FormData();
+      uploadFormData.append('audio', file);
+      uploadFormData.append('title', formData.title);
+      uploadFormData.append('artist', formData.artist);
+      uploadFormData.append('genre', formData.genre);
+      uploadFormData.append('description', formData.description);
+      uploadFormData.append('royaltyPercentage', formData.royaltyPercentage);
+      uploadFormData.append('parentTrackId', formData.parentTrackId);
+      uploadFormData.append('creatorAddress', '0x0000000000000000000000000000000000000000'); // TODO: Get from wallet
+
+      // Simulate progress while uploading
+      const progressInterval = setInterval(() => {
+        setUploadProgress(prev => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 200);
+
+      // Upload to backend
+      const response = await fetch('http://localhost:3001/api/tracks/upload', {
+        method: 'POST',
+        body: uploadFormData,
       });
-    }, 200);
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const result = await response.json();
+      
+      setUploadProgress(100);
+      
+      // Reset form
+      setFile(null);
+      setFormData({
+        title: '',
+        artist: '',
+        genre: '',
+        description: '',
+        royaltyPercentage: '500',
+        parentTrackId: '',
+      });
+
+      // Show success message
+      console.log('Track uploaded successfully:', result);
+      
+    } catch (error) {
+      console.error('Upload error:', error);
+      // Show error message
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const formatFileSize = (bytes: number) => {
