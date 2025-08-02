@@ -4,12 +4,20 @@ import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & {
+    variant?: 'default' | 'cyber' | 'neon' | 'transparent'
+  }
+>(({ className, variant = 'default', ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-lg transition-all duration-300",
+      {
+        'bg-card text-card-foreground border border-border shadow-sm hover:shadow-glow': variant === 'default',
+        'bg-card/90 text-card-foreground border border-primary/20 shadow-glow backdrop-blur-sm hover:shadow-glow-strong scan-lines': variant === 'cyber',
+        'bg-transparent border-2 border-neon-cyan/30 hover:border-neon-cyan text-card-foreground shadow-glow hover:shadow-glow-strong': variant === 'neon',
+        'bg-transparent border border-border/30 text-card-foreground backdrop-blur-sm': variant === 'transparent',
+      },
       className
     )}
     {...props}
@@ -36,7 +44,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-2xl font-semibold leading-none tracking-tight",
+      "text-xl font-semibold leading-none tracking-tight font-cyber",
       className
     )}
     {...props}
